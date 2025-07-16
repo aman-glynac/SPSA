@@ -36,7 +36,7 @@ class LLMContextBuilder:
     
     def _load_context_prompt(self) -> str:
         """Load context analysis prompt from file"""
-        prompt_path = Path("prompts/context_analysis_prompt.txt")
+        prompt_path = Path("prompts/sales_context_analysis_prompt.txt")
         
         try:
             with open(prompt_path, 'r', encoding='utf-8') as f:
