@@ -7,6 +7,7 @@ from pathlib import Path
 
 from models.schemas import VectorSearchResult, DealPattern
 from config.settings import settings
+from chromadb.config import Settings
 
 logger = logging.getLogger(__name__)
 
@@ -53,7 +54,10 @@ class ChromaDBVectorStore(VectorStore):
             Path(self.path).mkdir(parents=True, exist_ok=True)
             
             # Initialize ChromaDB client
-            self.client = chromadb.PersistentClient(path=self.path)
+            self.client = chromadb.PersistentClient(
+                path=self.path,
+                settings=Settings(anonymized_telemetry=False)
+                )
             
             # Get or create collection
             self.collection = self.client.get_or_create_collection(
